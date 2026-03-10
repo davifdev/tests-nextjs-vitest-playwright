@@ -1,26 +1,25 @@
 import { makeNewTodo } from "./make-new-todo";
 
-describe("makeNewTodo (unit)", () => {
-  describe("create", () => {
-    it("should return a new valid todo", () => {
-      // AAA --> Arrange, Act, Assert
-      // Arrange --> Criar as coisas que eu preciso
-      const expectedTodo = {
-        id: expect.any(String),
-        description: "my new todo",
-        createdAt: expect.any(String),
-      };
+it("should return a new valid todo", () => {
+  // AAA --> Arrange, Act, Assert
 
-      // Act --> Ação que você está testando
-      const newTodo = makeNewTodo("my new todo");
+  // Arrange --> Criar tudo que eu preciso para o teste
+  const expectedTodo = {
+    id: expect.any(String),
+    description: "descrição do todo",
+    createdAt: expect.any(String),
+  };
 
-      // Assert --> Checar se oque eu espero realmente aconteceu
+  // Act --> Executar a Ação que deve ser testada
+  const newTodo = makeNewTodo("descrição do todo");
 
-      // Checando apenas a description
-      expect(newTodo.description).toBe(expectedTodo.description);
+  // Assert --> Eu preciso checar se oque eu espero aconteceu
+  // toBe: Valores Primitivos ===
+  // toEqual, toStrictEqual: Objetos
 
-      // Checando o objeto inteiro
-      expect(newTodo).toStrictEqual(expectedTodo);
-    });
-  });
+  // Checando apenas a description
+  expect(expectedTodo.description).toBe(newTodo.description);
+
+  // Checando o objeto inteiro
+  expect(expectedTodo).toStrictEqual(newTodo);
 });
