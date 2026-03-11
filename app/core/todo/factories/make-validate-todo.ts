@@ -1,14 +1,14 @@
-import { sanitizeStr } from "@/app/utils/sanitize-str";
+import { sanitizeStr } from "../../../utils/sanitize-str";
 import { validateTodoDescription } from "../schemas/validate-todo-description";
 import { makeNewTodo } from "./make-new-todo";
 import { Todo } from "../schemas/todo.contract";
 
-type InvalidTodo = {
+export type InvalidTodo = {
   success: false;
   errors: string[];
 };
 
-type ValidTodo = {
+export type ValidTodo = {
   success: true;
   data: Todo;
 };
