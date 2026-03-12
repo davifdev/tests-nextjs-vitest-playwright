@@ -31,8 +31,8 @@ describe("makeValidateTodo (unit)", () => {
   it("deve chamar makeNewTodo se validatedDescription retornou sucesso", () => {
     const { description } = makeMocks();
     const result = makeValidatedTodo(description) as ValidTodo;
-    expect(result.success).toBe(true);
 
+    expect(result.success).toBe(true);
     expect(result.data).toStrictEqual({
       id: expect.any(String),
       description: "abcd",
@@ -44,6 +44,7 @@ describe("makeValidateTodo (unit)", () => {
     const { errors, description, validatedDescriptionSpy } = makeMocks();
     validatedDescriptionSpy.mockReturnValue({ success: false, errors });
     const result = makeValidatedTodo(description) as InvalidTodo;
+
     expect(result).toStrictEqual({ errors, success: false });
   });
 });
