@@ -1,11 +1,8 @@
 import * as sanitizeStrMod from "../../../utils/sanitize-str";
+import { InvalidTodo, ValidTodo } from "../schemas/todo.contract";
 import * as validatedTodoDescriptionMod from "../schemas/validate-todo-description";
 import * as makeNewTodoMod from "./make-new-todo";
-import {
-  InvalidTodo,
-  makeValidatedTodo,
-  ValidTodo,
-} from "./make-validate-todo";
+import { makeValidatedTodo } from "./make-validate-todo";
 
 describe("makeValidateTodo (unit)", () => {
   it("deve chamar a função sanitizeStr com o valor correto", () => {
@@ -33,7 +30,7 @@ describe("makeValidateTodo (unit)", () => {
     const result = makeValidatedTodo(description) as ValidTodo;
 
     expect(result.success).toBe(true);
-    expect(result.data).toStrictEqual({
+    expect(result.todo).toStrictEqual({
       id: expect.any(String),
       description: "abcd",
       createdAt: expect.any(String),
