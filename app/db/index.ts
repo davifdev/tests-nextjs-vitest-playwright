@@ -28,7 +28,7 @@ if (!globalThis.__db__) {
   globalThis.__db__ = makeDrizzle();
 }
 
-export const drizzleDatanase = {
+export const drizzleDatabase = {
   db: globalThis.__db__,
   todoTable,
 };
