@@ -4,7 +4,7 @@ import {
 } from "../../__tests__/utils/make-test-todo-repository";
 
 describe("DrizzleTodoRepository, (integration)", () => {
-  // Lima a base de dados antes de cada teste
+  // Limpa a base de dados antes de cada teste
   beforeEach(async () => {
     const { deleteTodoNoWhere } = await makeTestTodoRepository();
     await deleteTodoNoWhere();

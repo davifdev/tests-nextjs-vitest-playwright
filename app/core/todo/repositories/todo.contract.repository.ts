@@ -11,6 +11,5 @@ export interface CreateTodoRepository {
 export interface DeleteTodoRepository {
   remove(id: string): Promise<TodoPresenter>;
 }
-
 export interface TodoRepository
   extends FindAllTodoRepository, CreateTodoRepository, DeleteTodoRepository {}
