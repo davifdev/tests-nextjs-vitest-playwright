@@ -1,0 +1,75 @@
+import { revalidatePath } from "next/cache";
+import * as createTodoUseCaseMod from "../../../core/todo/usecases/create-todo.usecase";
+import { InvalidTodo, ValidTodo } from "../schemas/todo.contract";
+import { createTodoAction } from "./create-todo.action";
+
+vi.mock("next/cache", () => {
+  return {
+    revalidatePath: vi.fn(),
+  };
+});
+
+describe("createTodoAction (unit)", () => {
+  it("deve chamar createTodoUseCase com os valores corretos", async () => {
+    const { createTodoUseCaseSpy } = makeMocks();
+    const expectedParamCall = "Usecase should be called with this";
+    await createTodoAction(expectedParamCall);
+
+    expect(createTodoUseCaseSpy).toHaveBeenCalledExactlyOnceWith(
+      expectedParamCall,
+    );
+  });
+
+  it("deve chamar o revalidatePath se o usecase retornar sucesso", async () => {
+    const { revalidatePathMocked } = makeMocks();
+    const description = "Usecase should be called with this";
+    await createTodoAction(description);
+
+    expect(revalidatePathMocked).toHaveBeenCalledExactlyOnceWith("/");
+  });
+
+  it("deve retornar o mesmo valor do usecase em caso de sucesso", async () => {
+    const { successResult } = makeMocks();
+    const description = "Usecase should be called with this";
+    const result = await createTodoAction(description);
+
+    expect(result).toStrictEqual(successResult);
+  });
+
+  it("deve retornar o mesmo valor do usecase em caso de erro", async () => {
+    const { errorResult, createTodoUseCaseSpy } = makeMocks();
+    const description = "Usecase should be called with this";
+    createTodoUseCaseSpy.mockResolvedValue(errorResult);
+    const result = await createTodoAction(description);
+
+    expect(result).toStrictEqual(errorResult);
+  });
+});
+
+const makeMocks = () => {
+  const successResult = {
+    success: true,
+    todo: {
+      id: "any-id",
+      description: "any-description",
+      createdAt: "any-date",
+    },
+  } as ValidTodo;
+
+  const errorResult = {
+    success: false,
+    errors: ["any-error"],
+  } as InvalidTodo;
+
+  const createTodoUseCaseSpy = vi
+    .spyOn(createTodoUseCaseMod, "createTodoUseCase")
+    .mockResolvedValue(successResult);
+  const revalidatePathMocked = vi.mocked(revalidatePath);
+
+  return {
+    createTodoUseCaseSpy,
+    successResult,
+    errorResult,
+    revalidatePathMocked,
+  };
+};
