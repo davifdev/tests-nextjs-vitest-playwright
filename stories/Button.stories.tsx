@@ -1,7 +1,9 @@
+/* eslint-disable storybook/no-renderer-packages */
 import { Button } from "../app/components/Button";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
+  title: "Components/Forms/Button",
   component: Button,
   decorators: [
     (Story) => (
@@ -10,6 +12,7 @@ const meta = {
       </div>
     ),
   ],
+  tags: ["autodocs"],
 } satisfies Meta<typeof Button>;
 
 export default meta;
