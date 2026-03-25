@@ -4,7 +4,7 @@ const commomKeys = {
   drizzleSchemaFiles: [
     join("app", "core", "todo", "schemas", "drizzle-todo-table.schema.ts"),
   ],
-  drizzleMigrationsFolder: join("app", "db", "drizzle", "migrations"),
+  drizzleMigrationsFolder: join("app", "db", "drizzle/migrations"),
 };
 
 const envConfigs = {

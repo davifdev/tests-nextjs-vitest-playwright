@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { InputText, InputTextProps } from "./InpuText";
+import { InputText, InputTextProps } from "./InputText";
 import userEvent from "@testing-library/user-event";
 
 type Props = Partial<InputTextProps>;

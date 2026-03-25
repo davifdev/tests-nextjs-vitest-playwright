@@ -1,5 +1,5 @@
 /* eslint-disable storybook/no-renderer-packages */
-import { InputText } from "../app/components/InpuText";
+import { InputText } from "../app/components/InputText";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {

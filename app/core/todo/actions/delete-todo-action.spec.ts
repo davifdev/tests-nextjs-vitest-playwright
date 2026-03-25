@@ -1,4 +1,4 @@
-import { makeMocks } from "../../__tests__/make-test-todo-mocks";
+import { makeMocks } from "../../__tests__/utils/make-test-todo-mocks";
 
 import { deleteTodoAction } from "./delete-todo-action";
 

@@ -1,5 +1,5 @@
 import { createTodoAction } from "./create-todo.action";
-import { makeMocks } from "../../__tests__/make-test-todo-mocks";
+import { makeMocks } from "../../__tests__/utils/make-test-todo-mocks";
 
 vi.mock("next/cache", () => {
   return {

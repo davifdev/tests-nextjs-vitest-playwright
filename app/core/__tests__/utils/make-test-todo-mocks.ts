@@ -1,7 +1,7 @@
 import { revalidatePath } from "next/cache";
-import { InvalidTodo, ValidTodo } from "../todo/schemas/todo.contract";
-import * as createTodoUseCaseMod from "../../core/todo/usecases/create-todo.usecase";
-import * as deleteTodoUseCaseMod from "../../core/todo/usecases/delete-todo-usecase";
+import { InvalidTodo, ValidTodo } from "../../todo/schemas/todo.contract";
+import * as createTodoUseCaseMod from "../../todo/usecases/create-todo.usecase";
+import * as deleteTodoUseCaseMod from "../../todo/usecases/delete-todo-usecase";
 
 export const makeMocks = () => {
   const successResult = {
