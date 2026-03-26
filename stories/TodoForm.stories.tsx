@@ -1,7 +1,7 @@
 /* eslint-disable storybook/no-renderer-packages */
 import { TodoForm } from "../app/components/TodoForm";
 import type { Meta, StoryObj } from "@storybook/react";
-import { todoActionStoryMock } from "@/app/core/__tests__/mocks/todo-action-story";
+import { todoActionStoryMock } from "../app/core/__tests__/mocks/todo-action-story";
 
 const meta = {
   title: "Components/Forms/TodoForm",
