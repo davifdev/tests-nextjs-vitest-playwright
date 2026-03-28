@@ -1,5 +1,5 @@
-import { defineConfig } from "drizzle-kit";
-import { getFullEnv } from "./app/env/configs";
+import { defineConfig } from 'drizzle-kit';
+import { getFullEnv } from './app/env/configs';
 
 const { databaseFile, drizzleMigrationsFolder, drizzleSchemaFiles } =
   getFullEnv();
@@ -7,7 +7,7 @@ const { databaseFile, drizzleMigrationsFolder, drizzleSchemaFiles } =
 export default defineConfig({
   out: drizzleMigrationsFolder,
   schema: drizzleSchemaFiles,
-  dialect: "sqlite",
+  dialect: 'sqlite',
   dbCredentials: {
     url: databaseFile,
   },

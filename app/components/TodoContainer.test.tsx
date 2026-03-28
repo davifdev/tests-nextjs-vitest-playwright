@@ -1,11 +1,11 @@
-import { render, screen, within } from "@testing-library/react";
-import { TodoContainer } from "./TodoContainer";
+import { render, screen, within } from '@testing-library/react';
+import { TodoContainer } from './TodoContainer';
 import {
   insertTestTodos,
   makeTestTodoRepository,
-} from "../core/__tests__/utils/make-test-todo-repository";
+} from '../core/__tests__/utils/make-test-todo-repository';
 
-describe("<TodoContainer /> (integration)", () => {
+describe('<TodoContainer /> (integration)', () => {
   // Limpa a base de dados antes de cada teste
   beforeEach(async () => {
     const { deleteTodoNoWhere } = await makeTestTodoRepository();
@@ -19,21 +19,21 @@ describe("<TodoContainer /> (integration)", () => {
     await deleteTodoNoWhere();
   });
 
-  it("deve renderizar a TodoList e TodoForm na tela", async () => {
+  it('deve renderizar a TodoList e TodoForm na tela', async () => {
     render(await TodoContainer());
-    const headingAccessibleName = "Lista de tarefas";
-    const heading = screen.getByRole("heading", {
+    const headingAccessibleName = 'Lista de tarefas';
+    const heading = screen.getByRole('heading', {
       name: headingAccessibleName,
     });
-    const list = screen.getByRole("list", { name: headingAccessibleName });
-    const listItems = within(list).getAllByRole("listitem");
-    const input = screen.getByLabelText("Tarefa");
-    const btn = screen.getByRole("button", { name: "Criar tarefa" });
+    const list = screen.getByRole('list', { name: headingAccessibleName });
+    const listItems = within(list).getAllByRole('listitem');
+    const input = screen.getByLabelText('Tarefa');
+    const btn = screen.getByRole('button', { name: 'Criar tarefa' });
 
     expect(heading).toHaveTextContent(headingAccessibleName);
-    expect(list).toHaveAttribute("aria-labelledby", heading.id);
+    expect(list).toHaveAttribute('aria-labelledby', heading.id);
     expect(listItems).toHaveLength(5);
-    expect(input).toHaveAttribute("placeholder", "Digite sua tarefa");
-    expect(btn).toHaveAttribute("type", "submit");
+    expect(input).toHaveAttribute('placeholder', 'Digite sua tarefa');
+    expect(btn).toHaveAttribute('type', 'submit');
   });
 });

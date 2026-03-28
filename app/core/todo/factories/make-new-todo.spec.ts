@@ -1,17 +1,17 @@
-import { makeNewTodo } from "./make-new-todo";
+import { makeNewTodo } from './make-new-todo';
 
-it("should return a new valid todo", () => {
+it('should return a new valid todo', () => {
   // AAA --> Arrange, Act, Assert
 
   // Arrange --> Criar tudo que eu preciso para o teste
   const expectedTodo = {
     id: expect.any(String),
-    description: "descrição do todo",
+    description: 'descrição do todo',
     createdAt: expect.any(String),
   };
 
   // Act --> Executar a Ação que deve ser testada
-  const newTodo = makeNewTodo("descrição do todo");
+  const newTodo = makeNewTodo('descrição do todo');
 
   // Assert --> Eu preciso checar se oque eu espero aconteceu
   // toBe: Valores Primitivos ===

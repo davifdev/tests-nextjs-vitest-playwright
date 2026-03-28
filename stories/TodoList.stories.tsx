@@ -1,15 +1,15 @@
 /* eslint-disable storybook/no-renderer-packages */
-import { mockTodos } from "../app/core/__tests__/mocks/todo";
-import { TodoList } from "../app/components/TodoList";
-import { todoActionStoryMock } from "../app/core/__tests__/mocks/todo-action-story";
-import type { Meta, StoryObj } from "@storybook/react";
+import { mockTodos } from '../app/core/__tests__/mocks/todo';
+import { TodoList } from '../app/components/TodoList';
+import { todoActionStoryMock } from '../app/core/__tests__/mocks/todo-action-story';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof TodoList> = {
-  title: "Components/Lists/TodoList",
+  title: 'Components/Lists/TodoList',
   component: TodoList,
   decorators: [
-    (Story) => (
-      <div className="max-w-3xl mx-auto p-12">
+    Story => (
+      <div className='max-w-3xl mx-auto p-12'>
         <Story />
       </div>
     ),

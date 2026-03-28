@@ -1,18 +1,18 @@
 /* eslint-disable storybook/no-renderer-packages */
-import { Button } from "../app/components/Button";
-import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from '../app/components/Button';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: "Components/Forms/Button",
+  title: 'Components/Forms/Button',
   component: Button,
   decorators: [
-    (Story) => (
-      <div className="max-w-3xl mx-auto p-12 flex items-center justify-center">
+    Story => (
+      <div className='max-w-3xl mx-auto p-12 flex items-center justify-center'>
         <Story />
       </div>
     ),
   ],
-  tags: ["autodocs"],
+  tags: ['autodocs'],
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -21,17 +21,17 @@ type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
   args: {
-    children: "Texto do botão",
-    variant: "default",
-    size: "lg",
+    children: 'Texto do botão',
+    variant: 'default',
+    size: 'lg',
   },
 };
 
 export const Danger: Story = {
   args: {
-    children: "Texto do botão",
-    variant: "danger",
-    size: "lg",
+    children: 'Texto do botão',
+    variant: 'danger',
+    size: 'lg',
   },
   // render: (args) => {
   //   return (
@@ -44,8 +44,8 @@ export const Danger: Story = {
 
 export const Ghost: Story = {
   args: {
-    children: "Texto do botão",
-    variant: "ghost",
-    size: "lg",
+    children: 'Texto do botão',
+    variant: 'ghost',
+    size: 'lg',
   },
 };

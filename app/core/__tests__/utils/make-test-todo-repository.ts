@@ -1,6 +1,6 @@
-import { drizzleDatabase } from "../../../db/index";
-import { DrizzleTodoRepository } from "../../todo/repositories/drizzle-todo.repository";
-import { eq } from "drizzle-orm";
+import { drizzleDatabase } from '../../../db/index';
+import { DrizzleTodoRepository } from '../../todo/repositories/drizzle-todo.repository';
+import { eq } from 'drizzle-orm';
 
 export async function makeTestTodoRepository() {
   const { db, todoTable } = drizzleDatabase;
@@ -26,6 +26,7 @@ export const insertTestTodos = async () => {
   const todos = makeTestTodos();
 
   await insertTodoDb().values(todos);
+  return todos;
 };
 
 export const makeTestTodos = () => {

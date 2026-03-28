@@ -1,14 +1,14 @@
 /* eslint-disable storybook/no-renderer-packages */
-import { TodoForm } from "../app/components/TodoForm";
-import type { Meta, StoryObj } from "@storybook/react";
-import { todoActionStoryMock } from "../app/core/__tests__/mocks/todo-action-story";
+import { TodoForm } from '../app/components/TodoForm';
+import type { Meta, StoryObj } from '@storybook/react';
+import { todoActionStoryMock } from '../app/core/__tests__/mocks/todo-action-story';
 
 const meta = {
-  title: "Components/Forms/TodoForm",
+  title: 'Components/Forms/TodoForm',
   component: TodoForm,
   decorators: [
-    (Story) => (
-      <div className="max-w-3xl mx-auto p-12 flex items-center justify-center">
+    Story => (
+      <div className='max-w-3xl mx-auto p-12 flex items-center justify-center'>
         <Story />
       </div>
     ),

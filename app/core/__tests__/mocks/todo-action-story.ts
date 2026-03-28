@@ -1,8 +1,8 @@
 import {
   CreateTodoAction,
   DeleteTodoAction,
-} from "../../../core/todo/actions/todo.action.types";
-import { fn } from "@storybook/test";
+} from '../../../core/todo/actions/todo.action.types';
+import { fn } from '@storybook/test';
 
 export const todoActionStoryMock = {
   create: {
@@ -10,16 +10,16 @@ export const todoActionStoryMock = {
       return {
         success: true,
         todo: {
-          id: "any-id",
-          description: "any-description",
-          createdAt: "any-date",
+          id: 'any-id',
+          description: 'any-description',
+          createdAt: 'any-date',
         },
       };
     }) as CreateTodoAction,
     error: fn(async () => {
       return {
         success: false,
-        errors: ["falha ao criar todo"],
+        errors: ['falha ao criar todo'],
       };
     }) as CreateTodoAction,
   },
@@ -28,26 +28,26 @@ export const todoActionStoryMock = {
       return {
         success: true,
         todo: {
-          id: "any-id",
-          description: "any-description",
-          createdAt: "any-date",
+          id: 'any-id',
+          description: 'any-description',
+          createdAt: 'any-date',
         },
       };
     }) as DeleteTodoAction,
     error: fn(async () => {
       return {
         success: false,
-        errors: ["falha ao criar todo"],
+        errors: ['falha ao criar todo'],
       };
     }) as DeleteTodoAction,
     delayed: fn(async () => {
-      await new Promise((r) => setTimeout(r, 2000));
+      await new Promise(r => setTimeout(r, 2000));
       return {
         success: true,
         todo: {
-          id: "any-id",
-          description: "any-description",
-          createdAt: "any-date",
+          id: 'any-id',
+          description: 'any-description',
+          createdAt: 'any-date',
         },
       };
     }) as DeleteTodoAction,

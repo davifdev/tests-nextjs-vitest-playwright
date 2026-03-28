@@ -1,16 +1,16 @@
-import type { Preview } from "@storybook/nextjs-vite";
+import type { Preview } from '@storybook/nextjs-vite';
 
-import "../app/globals.css";
-import "./storybook.css";
+import '../app/globals.css';
+import './storybook.css';
 
 const preview: Preview = {
   parameters: {
     backgrounds: {
       values: [
         // { name: 'dark', value: '#000000' },
-        { name: "light", value: "ffffff" },
+        { name: 'light', value: 'ffffff' },
       ],
-      default: "light",
+      default: 'light',
     },
     controls: {
       matchers: {
@@ -23,7 +23,7 @@ const preview: Preview = {
       // 'todo' - show a11y violations in the test UI only
       // 'error' - fail CI on a11y violations
       // 'off' - skip a11y checks entirely
-      test: "todo",
+      test: 'todo',
     },
   },
   // decorators: [Story => <Story />]

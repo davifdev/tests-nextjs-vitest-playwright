@@ -89,9 +89,9 @@ Criar arquivo `./vitest.config.ts` (`code vitest.config.ts`):
 /// <reference types="vitest" />
 // Garante que o TypeScript reconheça os tipos do Vitest
 
-import { defineConfig } from "vitest/config";
-import react from "@vitejs/plugin-react";
-import path from "path";
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 // Carrega variáveis de ambiente antes de tudo
 // Estou usando a linha de comando para isso (mas deixei aqui caso queira)
@@ -102,7 +102,7 @@ export default defineConfig({
   test: {
     // Define o ambiente de testes como jsdom
     // (simula o DOM no Node.js, ideal para testes de componentes React)
-    environment: "jsdom",
+    environment: 'jsdom',
 
     // Permite usar funções como `describe`, `it`, `expect`
     // sem importar manualmente
@@ -115,15 +115,15 @@ export default defineConfig({
 
     // Arquivo executado antes de cada **arquivo de teste**
     // (ideal para configuração global como jest-dom e cleanup)
-    setupFiles: ["vitest.setup.ts"],
+    setupFiles: ['vitest.setup.ts'],
 
     // Executado uma única vez antes (setup) e depois (tearDown) da suíte
     // inteira de testes
-    globalSetup: ["vitest.global.setup.ts"],
+    globalSetup: ['vitest.global.setup.ts'],
 
     // Define quais arquivos serão considerados testes (unit e integration)
     // Testes de integração: .test.ts(x) | Testes Unitários: .spec.ts(x)
-    include: ["src/**/*.{spec,test}.{ts,tsx}"],
+    include: ['src/**/*.{spec,test}.{ts,tsx}'],
 
     // Tempo máximo para cada teste (em milissegundos)
     // antes de ser considerado travado ou falho
@@ -132,46 +132,46 @@ export default defineConfig({
     // Configuração de cobertura de testes
     coverage: {
       // Pasta onde os relatórios de cobertura serão gerados
-      reportsDirectory: "./coverage",
+      reportsDirectory: './coverage',
 
       // Usa o mecanismo de coverage nativo do Node.js
-      provider: "v8",
+      provider: 'v8',
 
       // Quais arquivos serão analisados para cobertura de código
-      include: ["src/**/*.{ts,tsx}"],
+      include: ['src/**/*.{ts,tsx}'],
 
       // Arquivos e pastas que serão ignorados no relatório de cobertura
       exclude: [
         // Ignora arquivos de teste
-        "**/*.test.{ts,tsx}",
-        "**/*.spec.{ts,tsx}",
+        '**/*.test.{ts,tsx}',
+        '**/*.spec.{ts,tsx}',
 
         // Ignora arquivos que TEM APENAS types ou interfaces
-        "**/types/**",
-        "**/*.d.ts",
-        "**/*.type.{ts,tsx}",
-        "**/*.types.{ts,tsx}",
-        "**/*.contract.{ts,tsx}",
-        "**/*.protocol.{ts,tsx}",
-        "**/*.interface.{ts,tsx}",
+        '**/types/**',
+        '**/*.d.ts',
+        '**/*.type.{ts,tsx}',
+        '**/*.types.{ts,tsx}',
+        '**/*.contract.{ts,tsx}',
+        '**/*.protocol.{ts,tsx}',
+        '**/*.interface.{ts,tsx}',
 
         // Ignora layout.tsx (se for precisar testar o layout, remova)
-        "src/app/**/layout.{ts,tsx}",
+        'src/app/**/layout.{ts,tsx}',
 
         // Ignora arquivos e pastas de mocks e utilitários de testes
-        "**/*.mock.{ts,tsx}",
-        "**/*.mocks.{ts,tsx}",
-        "**/mocks/**",
-        "**/__mocks__/**",
-        "**/__tests__/**",
-        "**/__test-utils__/**",
-        "**/*.test-util.ts",
+        '**/*.mock.{ts,tsx}',
+        '**/*.mocks.{ts,tsx}',
+        '**/mocks/**',
+        '**/__mocks__/**',
+        '**/__tests__/**',
+        '**/__test-utils__/**',
+        '**/*.test-util.ts',
 
         // Ignora arquivos e pastas do Storybook
-        "**/*.story.{ts,tsx}",
-        "**/*.stories.{ts,tsx}",
-        "**/stories/**",
-        "**/__stories__/**",
+        '**/*.story.{ts,tsx}',
+        '**/*.stories.{ts,tsx}',
+        '**/stories/**',
+        '**/__stories__/**',
       ],
     },
   },
@@ -181,7 +181,7 @@ export default defineConfig({
     alias: {
       // Permite usar @/ como atalho para a pasta src
       // Exemplo: import Button from '@/components/Button'
-      "@": path.resolve(__dirname, "src"),
+      '@': path.resolve(__dirname, 'src'),
     },
   },
 });
@@ -196,22 +196,22 @@ Criar arquivo `./vitest.setup.ts` (`code vitest.setup.ts`):
 // Importa funções do Vitest para usar depois dos testes
 // `afterEach` = executa algo depois de cada teste
 // `expect` = função principal para fazer asserções (testar resultados)
-import { afterEach, expect } from "vitest";
+import { afterEach, expect } from 'vitest';
 
 // Importa a função `cleanup` da Testing Library
 // Ela "limpa" o DOM após cada teste pra garantir que um teste não afete outro
-import { cleanup } from "@testing-library/react";
+import { cleanup } from '@testing-library/react';
 
 // Importa os matchers extras do jest-dom, adaptados pro Vitest
 // Exemplo: `.toBeInTheDocument()`, `.toHaveAttribute()`, etc.
 // Sem isso, o `expect(...).toBeInTheDocument()` daria erro
-import "@testing-library/jest-dom/vitest";
+import '@testing-library/jest-dom/vitest';
 
 // Importa todos os matchers do jest-dom adaptados para Vitest
 // Isso evita warnings relacionados ao act(...) em atualizações do React
 // e garante que matchers como `.toBeInTheDocument()` funcionem corretamente
-import * as matchers from "@testing-library/jest-dom/matchers";
-import { clearDrizzleTodoTable } from "@/core/todo/__tests__/utils/clear-drizzle-todo-table";
+import * as matchers from '@testing-library/jest-dom/matchers';
+import { clearDrizzleTodoTable } from '@/core/todo/__tests__/utils/clear-drizzle-todo-table';
 
 // Estende o expect global com os matchers do jest-dom
 // Sem isso, pode aparecer warning do tipo "You might have forgotten to wrap an update in act(...)"
@@ -235,7 +235,7 @@ afterEach(async () => {
 Arquivo `vitest.global.setup.ts`:
 
 ```ts
-import cleanupTestDatabase from "@/utils/__tests__/utils/cleanup-test-database";
+import cleanupTestDatabase from '@/utils/__tests__/utils/cleanup-test-database';
 
 // Executado uma única vez antes (setup) e depois (tearDown) da suíte
 // inteira de testes
@@ -429,9 +429,9 @@ Evite testar classes, IDs ou estrutura interna. Foque no conteúdo acessível ao
 usuário.
 
 ```tsx
-screen.getByText("Bem-vindo");
-screen.getByRole("button", { name: /salvar/i });
-screen.getByLabelText("Senha");
+screen.getByText('Bem-vindo');
+screen.getByRole('button', { name: /salvar/i });
+screen.getByLabelText('Senha');
 ```
 
 ### 2. Prefira `findBy*` para conteúdo assíncrono
@@ -439,7 +439,7 @@ screen.getByLabelText("Senha");
 Use `findBy` para esperar um elemento aparecer após interações.
 
 ```tsx
-await screen.findByText("Dados carregados");
+await screen.findByText('Dados carregados');
 ```
 
 ### 3. Use `userEvent` para simular interações
@@ -447,8 +447,8 @@ await screen.findByText("Dados carregados");
 Simula interações reais com foco, delay, teclado e clique.
 
 ```tsx
-await userEvent.click(screen.getByRole("button", { name: /enviar/i }));
-await userEvent.type(screen.getByLabelText("Nome"), "Otávio");
+await userEvent.click(screen.getByRole('button', { name: /enviar/i }));
+await userEvent.type(screen.getByLabelText('Nome'), 'Otávio');
 ```
 
 ### 4. Centralize renderizações comuns
@@ -466,7 +466,7 @@ function renderWithTheme(ui) {
 Verifique mensagens, estados, botões desabilitados, e mudanças visuais.
 
 ```tsx
-expect(screen.getByText("Erro ao salvar")).toBeInTheDocument();
+expect(screen.getByText('Erro ao salvar')).toBeInTheDocument();
 expect(button).toBeDisabled();
 ```
 
@@ -480,7 +480,7 @@ Só use se **não houver outra forma acessível** de selecionar.
 
 ```tsx
 // Evite:
-screen.getByTestId("botao-enviar");
+screen.getByTestId('botao-enviar');
 ```
 
 ### 2. Não teste classes, estilos ou estrutura interna
@@ -489,7 +489,7 @@ Fragiliza o teste. Mudanças no CSS quebram os testes sem necessidade.
 
 ```tsx
 // Evite:
-expect(button).toHaveClass("btn-primary");
+expect(button).toHaveClass('btn-primary');
 ```
 
 ### 3. Não use `waitFor` sem real necessidade
@@ -499,11 +499,11 @@ Use `waitFor` para condições genéricas, mas prefira `findBy` para elementos.
 ```tsx
 // Menos ideal:
 await waitFor(() => {
-  expect(screen.getByText("Pronto")).toBeInTheDocument();
+  expect(screen.getByText('Pronto')).toBeInTheDocument();
 });
 
 // Melhor:
-await screen.findByText("Pronto");
+await screen.findByText('Pronto');
 ```
 
 ### 4. Não teste implementação interna
@@ -516,7 +516,7 @@ visuais.
 expect(setStateSpy).toHaveBeenCalled();
 
 // Prefira:
-expect(screen.getByText("Contador: 1")).toBeInTheDocument();
+expect(screen.getByText('Contador: 1')).toBeInTheDocument();
 ```
 
 ---
@@ -552,7 +552,7 @@ test('chama handleSubmit com dados vazios', () => { ... })
 - Ideal quando o elemento já **deveria estar visível.**
 
 ```ts
-screen.getByText("Enviar");
+screen.getByText('Enviar');
 ```
 
 ### 🟦 `findBy*`
@@ -562,7 +562,7 @@ screen.getByText("Enviar");
 - Internamente usa `waitFor`.
 
 ```ts
-await screen.findByText("Carregando...");
+await screen.findByText('Carregando...');
 ```
 
 ### 🟥 `queryBy*`
@@ -571,7 +571,7 @@ await screen.findByText("Carregando...");
 - Ideal para testar **que algo não está na tela**.
 
 ```ts
-expect(screen.queryByText("Erro")).not.toBeInTheDocument();
+expect(screen.queryByText('Erro')).not.toBeInTheDocument();
 ```
 
 ### 🧭 Ordem de prioridade dos seletores
@@ -641,7 +641,7 @@ em uma linha**, faça:
 
 ```ts
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const valor: any = "teste controlado";
+const valor: any = 'teste controlado';
 ```
 
 Você pode combinar com `@ts-expect-error`:
@@ -649,7 +649,7 @@ Você pode combinar com `@ts-expect-error`:
 ```ts
 // @ts-expect-error forçando entrada inválida
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const valor: any = "valor";
+const valor: any = 'valor';
 ```
 
 ---
@@ -709,23 +709,23 @@ npm init playwright@latest
 Arquivo `playwright.config.ts`:
 
 ```ts
-import { defineConfig, devices } from "@playwright/test";
+import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  testDir: "./tests",
+  testDir: './tests',
   testMatch: /.*\.e2e\.ts/,
   fullyParallel: false,
   workers: 1,
-  globalTeardown: "./src/utils/__tests__/utils/cleanup-test-database.ts",
+  globalTeardown: './src/utils/__tests__/utils/cleanup-test-database.ts',
   use: {
-    baseURL: "http://localhost:3000",
-    trace: "on-first-retry",
+    baseURL: 'http://localhost:3000',
+    trace: 'on-first-retry',
   },
   projects: [
     {
-      name: "chromium",
+      name: 'chromium',
       use: {
-        ...devices["Desktop Chrome"],
+        ...devices['Desktop Chrome'],
 
         launchOptions: {
           headless: true,
@@ -735,14 +735,14 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "npm run dev:test",
-    url: "http://localhost:3000",
+    command: 'npm run dev:test',
+    url: 'http://localhost:3000',
     timeout: 120 * 1000,
     reuseExistingServer: !process.env.CI,
   },
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  reporter: "html",
+  reporter: 'html',
 });
 ```
 
@@ -756,9 +756,9 @@ Prefira `getByRole`, `getByText`, `getByLabel`, etc. — como o usuário vê e
 interage.
 
 ```ts
-await page.getByRole("button", { name: /enviar/i }).click();
-await page.getByLabel("Senha").fill("123456");
-await page.getByText("Bem-vindo").isVisible();
+await page.getByRole('button', { name: /enviar/i }).click();
+await page.getByLabel('Senha').fill('123456');
+await page.getByText('Bem-vindo').isVisible();
 ```
 
 ---
@@ -769,8 +769,8 @@ Sempre use `await` com `expect` e combine com `.toBeVisible()`, `.toHaveText()`,
 etc.
 
 ```ts
-await expect(page.getByText("Salvo com sucesso")).toBeVisible();
-await expect(page.getByRole("button", { name: /salvar/i })).toBeDisabled();
+await expect(page.getByText('Salvo com sucesso')).toBeVisible();
+await expect(page.getByRole('button', { name: /salvar/i })).toBeDisabled();
 ```
 
 ---
@@ -784,7 +784,7 @@ Evite `waitForTimeout`. Prefira esperar por elementos ou eventos reais.
 await page.waitForTimeout(1000);
 
 // Bom:
-await expect(page.getByText("Dados carregados")).toBeVisible();
+await expect(page.getByText('Dados carregados')).toBeVisible();
 ```
 
 ---
@@ -794,8 +794,8 @@ await expect(page.getByText("Dados carregados")).toBeVisible();
 Clique, digite, navegue — sem manipular DOM diretamente.
 
 ```ts
-await page.getByRole("textbox", { name: /nome/i }).fill("Otávio");
-await page.getByRole("button", { name: /enviar/i }).click();
+await page.getByRole('textbox', { name: /nome/i }).fill('Otávio');
+await page.getByRole('button', { name: /enviar/i }).click();
 ```
 
 ---
@@ -805,12 +805,12 @@ await page.getByRole("button", { name: /enviar/i }).click();
 Teste cenários completos de uso: login, navegação, erro, confirmação, etc.
 
 ```ts
-test("usuário faz login e vê painel", async ({ page }) => {
-  await page.goto("/");
-  await page.getByLabel("Email").fill("user@email.com");
-  await page.getByLabel("Senha").fill("senhaSegura123");
-  await page.getByRole("button", { name: /entrar/i }).click();
-  await expect(page.getByText("Painel do usuário")).toBeVisible();
+test('usuário faz login e vê painel', async ({ page }) => {
+  await page.goto('/');
+  await page.getByLabel('Email').fill('user@email.com');
+  await page.getByLabel('Senha').fill('senhaSegura123');
+  await page.getByRole('button', { name: /entrar/i }).click();
+  await expect(page.getByText('Painel do usuário')).toBeVisible();
 });
 ```
 
@@ -824,7 +824,7 @@ Não use `page.locator('div:nth-child(3) > span')` — isso quebra fácil.
 
 ```ts
 // Evite:
-await page.locator("form button:nth-child(2)").click();
+await page.locator('form button:nth-child(2)').click();
 ```
 
 ---
@@ -847,10 +847,10 @@ usuário**.
 
 ```ts
 // Evite:
-await page.locator(".input-primary").fill("...");
+await page.locator('.input-primary').fill('...');
 
 // Prefira:
-await page.getByRole("textbox", { name: /nome/i }).fill("...");
+await page.getByRole('textbox', { name: /nome/i }).fill('...');
 ```
 
 ---
@@ -863,7 +863,7 @@ await page.getByRole("textbox", { name: /nome/i }).fill("...");
 - Ajuda na acessibilidade
 
 ```ts
-await page.getByRole("button", { name: /salvar/i });
+await page.getByRole('button', { name: /salvar/i });
 ```
 
 ---
@@ -874,7 +874,7 @@ await page.getByRole("button", { name: /salvar/i });
 - Muito útil para mensagens, títulos, etc.
 
 ```ts
-await page.getByText("Cadastro realizado com sucesso");
+await page.getByText('Cadastro realizado com sucesso');
 ```
 
 ---
@@ -884,7 +884,7 @@ await page.getByText("Cadastro realizado com sucesso");
 - Ideal para inputs com rótulos
 
 ```ts
-await page.getByLabel("Senha").fill("123456");
+await page.getByLabel('Senha').fill('123456');
 ```
 
 ---

@@ -1,4 +1,4 @@
-import { Todo } from "../schemas/todo.contract";
+import { Todo } from '../schemas/todo.contract';
 
 // Quando eu chamar essa função eu passo um parâmetro description, e essa função irá me retornar um objeto que tenha uma chave id, description e createdAt
 export function makeNewTodo(description: string): Todo {
